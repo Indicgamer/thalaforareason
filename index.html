@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>My Web Page</title>
+    <style>
+      body {
+        font-family: Arial, Helvetica, sans-serif;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-content: center;
+        align-items: center;
+      }
+      .input-box {
+        width: 300px;
+        height: 40px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        padding: 10px;
+        font-size: 16px;
+        margin: 0 auto; /* Center the input horizontally */
+        align-self: center;
+      }
+
+      .card {
+        width: 400px;
+        height: 300px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        padding: 20px;
+        margin: 20px auto; /* Center the card horizontally */
+        display: flex;
+        justify-content: center; /* Center the image horizontally */
+        align-items: center; /* Center the image vertically */
+      }
+
+      .card img {
+        max-width: 100%;
+        max-height: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <input type="text" class="input-box" placeholder="Enter your text here" />
+
+    <div class="card">
+      <img
+        src="https://i.imgflip.com/89rkwi.jpg"
+        alt="Meme Image"
+        id="meme_image"
+      />
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>
