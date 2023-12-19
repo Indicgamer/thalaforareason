@@ -17,6 +17,9 @@ function fetchMeme(caption) {
     });
 }
 
+let songPlaying = false;
+let song;
+
 function showLoadingAnimation() {
   const loadingAnimation = document.getElementById("loading_animation");
   const memeImage = document.getElementById("meme_image");
@@ -31,13 +34,14 @@ function hideLoadingAnimation() {
   loadingAnimation.style.display = "none";
 }
 
-function playAudio() {
-  var audio = document.getElementById("audio");
-  //play from start
-  audio.currentTime = 0;
-  audio.play();
+function playAudio(audio) {
+  if(songPlaying) song.pause();
+ var a1 = new Audio(audio);
+  song = a1;
+  songPlaying = true;
+ a1.play();
   setTimeout(function () {
-    audio.pause();
+    a1.pause();
   }, 20000);
 }
 
@@ -51,10 +55,44 @@ function captionMeme(
   const url = "https://api.imgflip.com/caption_image";
   const params = new URLSearchParams();
   input1 = document.getElementById("input1").value;
+  let audio = "./bole_jo_koyal.mp3";
+
+
+
   if (input1 != "") {
-    text0 = input1;
+    var hasNumber = /\d/;   
+    if(hasNumber.test(input1)){
+        let sum =0;
+        let temp = parseInt(input1);
+        while(temp != 0){
+          sum+= temp%10;
+          temp = parseInt(temp/10);
+        }
+    
+        if(sum !=7){
+          text0 = "No thala :(";
+          text1 = "";
+          templateId = 61539;
+          audio = "./moye.mp3";
+        }
+        else{
+          text0 = input1.replace(" ", "").split("").join("+") + " = 7";
+        }
+    }
+    else{
+      text0 = input1;
+      if(text0.length == 7){
+        text0 = text0.replace(" ", "").split("").join("+") + " = 7";
+      }
+      else{
+        text0 = "No thala :(";
+        text1 = "";
+        templateId = 61539;
+        audio = "./moye.mp3";
+      }
+    }
   }
-  text0 = text0.replace(" ", "").split("").join("+") + " = 7";
+  
 
   params.append("template_id", templateId);
   params.append("username", username);
@@ -79,15 +117,16 @@ function captionMeme(
       memeImage.src = memeImageUrl;
       // Handle the response data here
       hideLoadingAnimation();
-      playAudio();
+      playAudio(audio);
       return false;
     })
     .catch((error) => {
       console.error("Error captioning meme:", error);
       hideLoadingAnimation();
       return false;
-    });
+    });  
 
+  
   return false;
 }
 //fetchMeme();

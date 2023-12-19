@@ -2,6 +2,7 @@
 <html>
   <head>
     <title>Thala for a reason</title>
+    <script src="https://cdn.tailwindcss.com"></script>
     <style>
       body {
         font-family: Arial, Helvetica, sans-serif;
@@ -59,8 +60,13 @@
     </style>
   </head>
   <body>
-    <audio id="audio" src="bole_jo_koyal.mp3"></audio>
-    <form onsubmit="return captionMeme()">
+    <header class="w-full  bg-blue-300 px-5 py-3">
+      <nav class="w-full flex justify-center">
+        <p class="text-lg font-bold text-blue-800">Thala For A Reason</p>
+      </nav>
+    </header>
+    
+    <form onsubmit="return captionMeme();">
       <input
         type="text"
         id="input1"
